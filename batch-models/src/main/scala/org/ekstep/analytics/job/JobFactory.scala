@@ -13,6 +13,7 @@ import org.ekstep.analytics.job.summarizer.MonitorSummarizer
 import org.ekstep.analytics.job.summarizer.WorkFlowSummarizer
 import org.ekstep.analytics.job.updater.ContentRatingUpdater
 import org.ekstep.analytics.job.updater.DeviceProfileUpdater
+import org.sunbird.analytics.job.report.ETBMetricsJob
 
 /**
  * @author Santhosh
@@ -50,6 +51,8 @@ object JobFactory {
         DruidQueryProcessor
       case "audit-metrics-report" =>
         MetricsAuditJob
+      case "etb-metrics" =>
+        ETBMetricsJob
       case _ =>
         reflectModule(jobType);
     }

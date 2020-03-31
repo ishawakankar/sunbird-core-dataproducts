@@ -76,14 +76,14 @@ object StateAdminGeoReportJob extends optional.Application with IJob with StateA
       s"source $virtualEnvDirectory/bin/activate; " +
       s"dataproducts user_detail --data_store_location='$scriptOutputDirectory' --states='$slugs'")
     JobLogger.log(s"User detail district zip report command:: $userDetailReportCommand", None, INFO)
-    val userDetailReportExitCode = ScriptDispatcher.dispatch(userDetailReportCommand)
+//    val userDetailReportExitCode = ScriptDispatcher.dispatch(userDetailReportCommand)
 
-    if (userDetailReportExitCode == 0) {
-      JobLogger.log(s"District level zip generation::Success", None, INFO)
-    } else {
-      JobLogger.log(s"District level zip generation failed with exit code $userDetailReportExitCode", None, ERROR)
-      throw new Exception(s"District level zip generation failed with exit code $userDetailReportExitCode")
-    }
+//    if (userDetailReportExitCode == 0) {
+//      JobLogger.log(s"District level zip generation::Success", None, INFO)
+//    } else {
+//      JobLogger.log(s"District level zip generation failed with exit code $userDetailReportExitCode", None, ERROR)
+//      throw new Exception(s"District level zip generation failed with exit code $userDetailReportExitCode")
+//    }
   }
 
   def districtSummaryReport(blockData: DataFrame, storageConfig: StorageConfig)(implicit spark: SparkSession, fc: FrameworkContext): Unit = {

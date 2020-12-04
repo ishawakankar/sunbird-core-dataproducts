@@ -25,7 +25,7 @@ case class ContentMetrics(
                          ) extends AlgoOutput with Output
 case class GraphUpdateEvent(eid: String, ets: Long, mid: String, actor: Map[String, String], context: Map[String, AnyRef], objectInfo: Map[String, String], eventData: Map[String, Any])
 
-object UpdateContentRating extends IBatchModelTemplate[Empty, Empty, ContentMetrics, ContentMetrics] with Serializable {
+object UpdateContentRating extends IBatchModelTemplate[Empty, Empty, ContentMetrics, GraphUpdateEvent] with Serializable {
 
   implicit val className = "org.ekstep.analytics.updater.UpdateContentRating"
 

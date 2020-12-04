@@ -22,8 +22,8 @@ case class ContentMetrics(
                            totalPlaySessionCountInApp: Option[Long],
                            totalPlaySessionCountInPortal: Option[Long],
                            totalPlaySessionCountInDeskTop: Option[Long]
-                         ) extends AlgoOutput with Output
-case class GraphUpdateEvent(eid: String, ets: Long, mid: String, actor: Map[String, String], context: Map[String, AnyRef], objectInfo: Map[String, String], eventData: Map[String, Any])
+                         ) extends AlgoOutput
+case class GraphUpdateEvent(eid: String, ets: Long, mid: String, actor: Map[String, String], context: Map[String, AnyRef], objectInfo: Map[String, String], eventData: Map[String, Any]) extends Output
 
 object UpdateContentRating extends IBatchModelTemplate[Empty, Empty, ContentMetrics, GraphUpdateEvent] with Serializable {
 

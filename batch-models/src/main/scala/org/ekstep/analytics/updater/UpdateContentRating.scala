@@ -23,7 +23,7 @@ case class ContentMetrics(
                            totalPlaySessionCountInPortal: Option[Long],
                            totalPlaySessionCountInDeskTop: Option[Long]
                          ) extends AlgoOutput
-case class GraphUpdateEvent(eid: String, ets: Long, mid: String, actor: Map[String, String], context: Map[String, AnyRef], objectInfo: Map[String, String], eventData: Map[String, Any]) extends Output
+case class GraphUpdateEvent(eid: String, ets: Long, mid: String, actor: Map[String, String], context: Map[String, AnyRef], var `object`: Map[String, String], eventData: Map[String, Any]) extends Output
 
 object UpdateContentRating extends IBatchModelTemplate[Empty, Empty, ContentMetrics, GraphUpdateEvent] with Serializable {
 
@@ -55,7 +55,6 @@ object UpdateContentRating extends IBatchModelTemplate[Empty, Empty, ContentMetr
           GraphUpdateEvent("UPDATE_RATING",DateTime.now().getMillis,s"DP.${DateTime.now().getMillis}.${f.contentId}",Map("id"->"UPDATE_CONTENT_RATING","type"->"System"),Map("pdata"->Map("ver"->"1.0","id"->"org.ekstep.platform"),"channel"->s"channel-${f.contentId}"),Map("ver"->"1.0","id"->f.contentId),
             Map("action"->"update-content-rating","stage"-> 4,"metadata"->contentMap))
         })
-//      KafkaDispatcher.dispatch(config, con)
 
       data.foreach { contentMetrics: ContentMetrics =>
         if (contentMetrics.contentId != null && !contentMetrics.contentId.isEmpty) {
